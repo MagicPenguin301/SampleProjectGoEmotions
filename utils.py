@@ -1,0 +1,49 @@
+from typing import Iterable
+import torch
+from functools import reduce
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+
+
+def preprocess(
+    data,
+    num_classes,
+    tokenize_fn=word_tokenize,
+    lemmatize_fn=WordNetLemmatizer().lemmatize,
+):
+    def id_to_onehot_label(labels: Iterable[Iterable[int]], num_classes):
+        one_hot = torch.zeros(len(labels), num_classes)
+        for i, multi_label in enumerate(labels):
+            for single_label in multi_label:
+                one_hot[i, single_label] = 1
+        return one_hot
+
+    def build_vocab(tokens: Iterable[str]):
+        vocab = {}
+        vocab["[PAD]"] = 0
+        vocab["[UNK]"] = 1
+        for token in tokens:
+            if token not in vocab:
+                vocab[token] = len(vocab)
+        return vocab
+
+    # tokenize and lemmatize
+    sents = [list(map(lemmatize_fn, tokenize_fn(item["text"]))) for item in data]
+    # flatten
+    flattened_tokens = reduce(lambda x, y: x + y, sents, [])
+    # build a vocab
+    vocab = build_vocab(flattened_tokens)
+    # padding
+    max_length = max([len(sent) for sent in sents])
+    for sent in sents:
+        if len(sent) < max_length:
+            sent += ["[PAD]"] * (max_length - len(sent))
+    # convert input tokens to ids
+    unk_idx = vocab["[UNK]"]
+    input_ids = [[vocab.get(token, unk_idx) for token in sent] for sent in sents]
+
+    # convert labels into one-hot
+    multi_labels = [item["labels"] for item in data]
+    onehot_labels = id_to_onehot_label(multi_labels, num_classes)
+
+    return torch.tensor(input_ids, dtype=torch.long), onehot_labels, vocab
