@@ -1,17 +1,19 @@
-## A sample DL/NLP Project on the dataset [GoEmotions](https://huggingface.co/datasets/google-research-datasets/go_emotions).
+## A sample Pytorch/NLP project on the dataset [GoEmotions](https://huggingface.co/datasets/google-research-datasets/go_emotions).
 
-- This is just a sample project to demonstrate some basic skills in DL and NLP.
+- This is a sample project to demonstrate basic coding skills in PyTorch and NLP.
 
-- The task and the model are simple and the performance is not highly relevant.
+- The model is a simple LSTM-based multi-label emotion classifier.
+
+- The focus is on clean structure and readable code, rather than model performance.
 
 ### Running
-To train, evaluate and test the model on the dataset, simply run the following command:
+To train, evaluate, and test the model with default settings:
 
 ```bash
 python main.py
 ```
 
-or with custom arguments:
+To customize model hyperparameters:
 
 ```bash
 python main.py --embedding_size 128 --hidden_size 256 --batch_size 32 --epochs 5 --shuffle
