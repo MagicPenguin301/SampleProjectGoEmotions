@@ -7,11 +7,12 @@
 ### Running
 To train, evaluate and test the model on the dataset, simply run the following command:
 
-```console
+```bash
 python main.py
 ```
 
 or with custom arguments:
-```console
+
+```bash
 python main.py --embedding_size 128 --hidden_size 256 --batch_size 32 --epochs 5 --shuffle
 ```
