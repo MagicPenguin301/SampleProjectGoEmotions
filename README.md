@@ -1,4 +1,4 @@
-## A sample Pytorch/NLP project on the dataset [GoEmotions](https://huggingface.co/datasets/google-research-datasets/go_emotions).
+## A sample PyTorch/NLP project on the dataset [GoEmotions](https://huggingface.co/datasets/google-research-datasets/go_emotions).
 
 - This is a sample project to demonstrate basic coding skills in PyTorch and NLP.
 
