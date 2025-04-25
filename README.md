@@ -1,4 +1,4 @@
-## Sample DL Project on the dataset [GoEmotions](https://huggingface.co/datasets/google-research-datasets/go_emotions).
+## A sample DL/NLP Project on the dataset [GoEmotions](https://huggingface.co/datasets/google-research-datasets/go_emotions).
 
 - This is just a sample project to demonstrate some basic skills in DL and NLP.
 
