@@ -6,7 +6,7 @@
 
 - The focus is on clean structure and readable code, rather than model performance.
 
-### Running
+### Running the Project
 To train, evaluate, and test the model with default settings:
 
 ```bash
